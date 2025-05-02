@@ -99,17 +99,18 @@ nav ul li a:hover {
     background-color: #fff;
     padding: 20px;
     width: 100%;
+    height: 200px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
 .painel-info h2 {
     margin-bottom: 10px;
-    font-size: 24px;
+    font-size: 36px;
 }
 
 .painel-info p {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 /* Painel de Lista */
@@ -117,7 +118,7 @@ nav ul li a:hover {
     background-color: #fff;
     padding: 20px;
     width: 100%;
-    height: 250px;  /* Altura reduzida para o painel de lista */
+    height: 500px;  /* Altura reduzida para o painel de lista */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow-y: scroll;
@@ -166,4 +167,37 @@ footer {
     text-align: center;
     padding: 10px;
     font-size: 14px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    gap: 20px;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Novo contêiner que empilha os painéis principais verticalmente */
+.painel-principal {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+    
+}
+
+.painel-lateral {
+    width: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.painel-info,
+.painel-lista {
+    width: 80%; /* ou 70%, 60%, ajuste conforme desejar */
+    margin: 0 auto; /* centraliza horizontalmente */
 }
