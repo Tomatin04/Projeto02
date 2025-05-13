@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . "/header.php"?>
+<?php $this->layout( 'layout'); ?>
 
 <main class="content">
         <div class="painel-principal">
@@ -40,5 +40,3 @@
             <!-- mais conteúdo -->
         </section>
     </main>
-
-<?php require_once __DIR__ . "/footer.php"?>
