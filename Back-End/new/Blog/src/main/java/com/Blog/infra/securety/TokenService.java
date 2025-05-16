@@ -7,6 +7,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -14,13 +15,13 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class TokenService {
 
     @Value("${api.securety.token.secret}")
     private String secret;
 
-    @Autowired
-    private ArrayList<String> blackList;
+
 
     public String tokenGeneration(User user){
         try{
