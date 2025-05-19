@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class LoginFormController implements RequestHandlerInterface
+class LoginFormController implements RequestHandlerInterface 
 {
     public function __construct(private Engine $templates)
     {
@@ -19,6 +19,8 @@ class LoginFormController implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        
+        
         if (array_key_exists('logado', $_SESSION) && $_SESSION['logado'] === true) {
             return new Response(302, [
                 'Location' => '/'

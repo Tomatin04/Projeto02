@@ -20,7 +20,6 @@ class MainViewController implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         
-
         return new Response(200,  body: $this->templates->render('main_view'));
     }
 }

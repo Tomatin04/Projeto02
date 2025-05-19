@@ -4,10 +4,11 @@ declare (strict_types=1);
 
 namespace Front_End\controller;
 
-use Nyholm\Psr7\ServerRequest;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 use League\Plates\Engine;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class RegisterFormController implements RequestHandlerInterface
 {
@@ -16,9 +17,15 @@ class RegisterFormController implements RequestHandlerInterface
         
     }
 
-    public function handle(ServerRequest $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        if (array_key_exists('logado', $_SESSION) && $_SESSION['logado'] === true) {
+            return new Response(302, [
+                'Location' => '/'
+            ]);
+        }
 
-        return null;
+        return new Response(200, body: $this->templates->render('register_view'));
     }
+
 }
