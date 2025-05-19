@@ -22,7 +22,7 @@ class LoginController implements RequestHandlerInterface
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'senha');
 
-        $ch = curl_init('http://localhost:8090/login');
+        $ch = curl_init('http://localhost:8090/api/login');
 
         $data = [
             "login" => $email,
