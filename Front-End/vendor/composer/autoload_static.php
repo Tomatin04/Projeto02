@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc
+class ComposerStaticInite414552195e998073e4158729ec1ace9
 {
     public static $files = array (
         'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
@@ -16,6 +16,8 @@ class ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc
             'Psr\\Http\\Server\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'Porjeto02\\Frontend\\' => 19,
+            'PhpDocReader\\' => 13,
         ),
         'N' => 
         array (
@@ -30,10 +32,6 @@ class ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc
         'I' => 
         array (
             'Invoker\\' => 8,
-        ),
-        'F' => 
-        array (
-            'Front_End\\' => 10,
         ),
         'D' => 
         array (
@@ -55,6 +53,14 @@ class ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Porjeto02\\Frontend\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
+        'PhpDocReader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-di/phpdoc-reader/src/PhpDocReader',
+        ),
         'Nyholm\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/nyholm/psr7/src',
@@ -75,10 +81,6 @@ class ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc
         array (
             0 => __DIR__ . '/..' . '/php-di/invoker/src',
         ),
-        'Front_End\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'DI\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-di/php-di/src',
@@ -92,9 +94,9 @@ class ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit2aa2864f8706ccd254d579dbacb012bc::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite414552195e998073e4158729ec1ace9::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite414552195e998073e4158729ec1ace9::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite414552195e998073e4158729ec1ace9::$classMap;
 
         }, null, ClassLoader::class);
     }

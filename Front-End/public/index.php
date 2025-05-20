@@ -6,7 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $routes = require_once __DIR__ . '/../config/routes.php';
 /** @var \Psr\Container\ContainerInterface $diContainer */
-$diContainer = require_once __DIR__ . '/../config/dependencies.php';
+$diContainer = require_once __DIR__ . '/../config/dependecies.php';
 
 $pathInfo = $_SERVER['PATH_INFO'] ?? '/';
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -15,7 +15,8 @@ session_start();
 session_regenerate_id();
 
 $isLoginRoute = $pathInfo === '/login';
-if (!array_key_exists('logado', $_SESSION) && !$isLoginRoute) {
+$isRegisterRoute = $pathInfo === '/register';
+if (!array_key_exists('logado', $_SESSION) && !$isLoginRoute && !$isRegisterRoute) {
     header('Location: /login');
     return;
 }
