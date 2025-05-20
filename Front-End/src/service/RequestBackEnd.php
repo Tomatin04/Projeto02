@@ -35,17 +35,20 @@ class RequestBackEnd
     public function requestPost(String $endpoint, String $data)
     {
         $ch = curl_init($this->apiEndpoints[$endpoint]);
-        var_dump($data);
+        
+        $header = [
+            'Accept: application/json',
+            'Content-Type: application/json',
+        ];
 
+        if (isset($_SESSION['token'])) $header[] = 'Authorization: Bearer ' . $_SESSION['token'];
+        
+
+        //var_dump($header);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Accept: application/json',
-            'Content-Type: application/json',
-            //'Content-Length: ' . strlen($data),
-            //'Authorization: Bearer ' . $_SESSION['token'] ?? ''
-        ]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
 
         $response = curl_exec($ch);

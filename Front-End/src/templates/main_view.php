@@ -3,12 +3,12 @@
 <main class="content">
         <div class="painel-principal">
             <section class="painel-info">
-                <h2>Informações Importantes</h2>
-                <p>Este painel contém informações cruciais sobre o sistema...</p>
+                <h2>Última Nóticias</h2>
+                <p>Este painel contém informações cruciais  sobre o siste Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate adipisci suscipit soluta debitis error omnis. Officiis natus possimus, ad nostrum soluta magni, voluptates dicta nulla libero obcaecati hic. Error, corrupti.</p>
             </section>
     
             <section class="painel-lista">
-                <h2>Lista de Itens</h2>
+                <h2>Nóticias passadas</h2>
                 <ul>
                     <li>Item 1</li>
                     <li>Item 1</li>

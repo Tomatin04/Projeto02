@@ -159,3 +159,8 @@ footer {
     padding: 10px;
     font-size: 14px;
 }
+
+.remover-sub-a{
+    text-decoration: none; /* Remove o sublinhado */
+    color: black;
+}

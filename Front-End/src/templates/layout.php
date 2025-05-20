@@ -18,15 +18,19 @@
         <label for="menu-toggle" class="menu-btn">☰ Menu</label>
 
         <!-- Menu -->
-        <nav id="menu" class="hidden">
-            <ul>
-                <li><a href="#">Opção 1</a></li>
-                <li><a href="#">Opção 2</a></li>
-                <li><a href="#">Opção 3</a></li>
-            </ul>
-        </nav>
+        <?php if(isset($_SESSION['token'])): ?>
+            <nav id="menu" class="hidden">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Perfil</a></li>
+                    <li><a href="#">Créditos</a></li>
+                </ul>
+            </nav>
+        <?php endif; ?>
 
-        <button class="login-btn">Login</button>
+        <?php if(isset($_SESSION['token'])): ?>
+            <a href="/logout" class="remover-sub-a"><button class="login-btn">Logout</button></a>
+        <?php endif;?>
     </header>
 
     <?= $this->section('content');  ?>
