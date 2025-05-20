@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Account Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="user-account-panel">
+        <h1>Conta do Usuário</h1>
+        <div class="user-info">
+            <p><strong>Nome:</strong> Matheus Sampaio</p>
+            <p><strong>Email:</strong> matheus@example.com</p>
+        </div>
+        <div class="password-section">
+            <input type="password" id="password" placeholder="Senha" disabled>
+            <button id="unlock-button">Desbloquear Senha</button>
+            <button id="submit-button" style="display: none;">Enviar Senha</button>
+        </div>
+        <button id="delete-account-button" class="delete-button">Excluir Conta</button>
+    </div>
+
+    <script>
+        const unlockButton = document.getElementById('unlock-button');
+        const passwordInput = document.getElementById('password');
+        const submitButton = document.getElementById('submit-button');
+
+        unlockButton.addEventListener('click', () => {
+            passwordInput.disabled = false;
+            submitButton.style.display = 'inline';
+            unlockButton.style.display = 'none';
+        });
+
+        submitButton.addEventListener('click', () => {
+            alert('Senha enviada!');
+            // Add logic to handle password submission
+        });
+
+        document.getElementById('delete-account-button').addEventListener('click', () => {
+            if (confirm('Tem certeza que deseja excluir sua conta?')) {
+                // Add logic to handle account deletion
+                alert('Conta excluída!');
+            }
+        });
+    </script>
+</body>
+</html>
