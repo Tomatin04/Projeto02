@@ -16,6 +16,11 @@ class LoginFormController implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        if (array_key_exists('token', $_SESSION) && $_SESSION['token'] != null){
+            return new Response(302, [
+                'Location' => '/'
+            ]);
+        }
         return new Response(200, body: $this->templates->render('login_view'));
     }
 }

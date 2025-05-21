@@ -17,13 +17,16 @@ class LogoutController implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $reposne = (new RequestBackEnd())->requestGet('logout');
-
+    
+        $reposne = (new RequestBackEnd())->requestPost('logout');
+        
         if($reposne != null){
             session_destroy();
-            unset($_SESSION['token']);
+            $_SESSION['token'] = null;
+            //var_dump($_SESSION['token']);
             return new Response(200, body: $this->templates->render('login_view'));
         }else{
+
             return new Response(200, body: $this->templates->render('main_view'));
         }
     }

@@ -27,9 +27,13 @@ class LoginController implements RequestHandlerInterface
         $json = json_encode($data);
 
         $response = (new RequestBackEnd())->requestPost('login', $json);
+        var_dump($response);
 
         if($response != null){
             $_SESSION['token'] = $response;
+            $_SESSION['logado'] = true;
+            //var_dump($response, $_SESSION['token']);
+            //exit();
             return new Response(200, body: $this->templates->render('main_view'));
         }else{
             return new Response(200, body: $this->templates->render('login_view'));

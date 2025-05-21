@@ -13,12 +13,12 @@ $httpMethod = $_SERVER['REQUEST_METHOD'];
 
 session_start();
 session_regenerate_id();
-$_SESSION['token'] = null;
 
 
+//is_null($_SESSION['token'])
 $isLoginRoute = $pathInfo === '/login';
 $isRegisterRoute = $pathInfo === '/register';
-if (!array_key_exists('logado', $_SESSION) && !$isLoginRoute && !$isRegisterRoute) {
+if (!array_key_exists('token', $_SESSION) && !$isLoginRoute && !$isRegisterRoute) {
     header('Location: /login');
     return;
 }

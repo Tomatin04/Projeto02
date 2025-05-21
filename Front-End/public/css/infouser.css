@@ -46,21 +46,18 @@ main {
     position: absolute;
     top: 18px;
     right: 18px;
+    background: #1976d2;
     color: #fff;
-    padding: 10px 20px;
+    border: none;
+    padding: 8px 18px;
     border-radius: 5px;
     font-size: 1rem;
-    transition: background 0.2s;
-
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
 .edit-btn:hover {
-    background-color: #45a049;
+    background: #0d47a1;
 }
 
 /* Botão Deletar no canto inferior direito */
@@ -127,18 +124,6 @@ header {
 }
 
 .login-btn:hover {
-    background-color: #45a049;
-}
-
-.boton-generic{
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.boton-generic:hover{
     background-color: #45a049;
 }
 
