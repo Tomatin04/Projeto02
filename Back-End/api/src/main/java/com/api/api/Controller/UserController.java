@@ -3,6 +3,7 @@ package com.api.api.Controller;
 import com.api.api.Infra.Securety.SecuretyConfiguration;
 import com.api.api.Infra.Securety.TokenService;
 import com.api.api.Infra.Service.InformationMessage;
+import com.api.api.Infra.Service.UserUtil;
 import com.api.api.Model.User.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
@@ -21,7 +22,7 @@ public class UserController {
     private UserRepository repository;
 
     @Autowired
-    private TokenService tokenService;
+    private UserUtil userUtil;
 
 
     @PostMapping
@@ -35,16 +36,14 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity show (@RequestHeader("Authorization")  String token){
-        String clearToken = token.replace("Bearer ", "");
-        var user = repository.findById(tokenService.getIdFromToken(clearToken)).orElseThrow();
+        var user = userUtil.getUserByToken(token);
         return ResponseEntity.ok(new InformationData(user, "Sucesso ao buscar usuario"));
     }
 
     @PutMapping
     @Transactional
     public ResponseEntity update (@RequestHeader("Authorization") String token, @RequestBody @Valid UpdateData data, UriComponentsBuilder uriComponentsBuilder){
-        String clearToken = token.replace("Bearer ", "");
-        var user = repository.findById(tokenService.getIdFromToken(clearToken)).orElseThrow();
+        var user = userUtil.getUserByToken(token);
         user.atualizarInformacoes(data);
         return ResponseEntity.ok(new InformationData(user, "Sucesso ao salvar o usuario"));
     }
@@ -52,8 +51,7 @@ public class UserController {
     @DeleteMapping
     @Transactional
     public ResponseEntity delete (@RequestHeader("Authorization")  String token){
-        String clearToken = token.replace("Bearer ", "");
-        repository.intelDeleteUser(tokenService.getIdFromToken(clearToken));
+        repository.intelDeleteUser(userUtil.getIdFromToken(token));
         return ResponseEntity.ok().build();
     }
 }

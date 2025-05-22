@@ -24,4 +24,15 @@ public class New {
     @JoinColumn(name = "id_creator")
     private User creator;
 
+    public New (CreateData data){
+        this.titulo = data.titulo();
+        this.conteudo = data.conteudo();
+    }
+
+    public void atualizarInformacoes(UpdateData data, User creator){
+        if(data.titulo() != null) this.titulo = data.titulo();
+        if(data.conteudo() != null) this.conteudo = data.conteudo();
+        this.creator = creator;
+    }
+
 }
