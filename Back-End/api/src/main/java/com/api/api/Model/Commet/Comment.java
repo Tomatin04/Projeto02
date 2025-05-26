@@ -32,4 +32,8 @@ public class Comment {
     @OneToMany(mappedBy = "origin", fetch = FetchType.LAZY)
     private List<Comment> respostas;
 
+    public Comment(CreateData data){
+        this.comment = data.comment();
+    }
+
 }

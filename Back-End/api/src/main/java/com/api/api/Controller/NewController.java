@@ -1,6 +1,7 @@
 package com.api.api.Controller;
 
 import com.api.api.Infra.Securety.TokenService;
+import com.api.api.Infra.Service.AdminCheck;
 import com.api.api.Infra.Service.InformationMessage;
 import com.api.api.Infra.Service.UserUtil;
 import com.api.api.Model.News.CreateData;
@@ -30,18 +31,32 @@ public class NewController {
     @Autowired
     private UserUtil userUtil;
 
-
+    @Autowired
+    private AdminCheck admC;
 
     @GetMapping
     public ResponseEntity show (@PageableDefault(sort= {"titulo"}, size = 5) Pageable paginacao){
-        var page = repository.findAll(paginacao).map(ShowData::new);
+        var page = repository.findAllByIsNotDeleted(paginacao).map(ShowData::new);
         return ResponseEntity.ok(page);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity findById(@PathVariable Long id){
+        var anew = repository.findByIdNotDeleted(id);
+        return ResponseEntity.ok(anew);
+    }
+
+    @GetMapping("/{titulo}")
+    public ResponseEntity findByTitle(@PathVariable String titulo){
+        var anew = repository.findByTituloNotDeleted(titulo);
+        return ResponseEntity.ok(anew);
     }
 
     @PostMapping
     @Transactional
     public ResponseEntity create (@RequestHeader("Authorization")  String token, @RequestBody @Valid CreateData data, UriComponentsBuilder uriComponentsBuilder){
         var user = userUtil.getUserByToken(token);
+        if(admC.checkIsAdmin(user)) return admC.forbind("Usuário não autrizado a criar avisos");
         var anew = new New(data);
         anew.setCreator(user);
         repository.save(anew);
@@ -53,8 +68,19 @@ public class NewController {
     @Transactional
     public ResponseEntity update (@RequestHeader("Authorization")  String token, @RequestBody @Valid UpdateData data, UriComponentsBuilder uriComponentsBuilder){
         var user = userUtil.getUserByToken(token);
-        var anew = repository.findById(data.id());
-        return null;
+        if(admC.checkIsAdmin(user)) return admC.forbind("Usuário não autrizado a atualizar avisos");
+        New anew = repository.getReferenceById(data.id());
+        anew.atualizarInformacoes(data, user);
+        return ResponseEntity.ok(new InformationMessage("Noticia atualziada com sucesso"));
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity delete (@PathVariable Long id, @RequestHeader("Authorization")  String token){
+        if(admC.checkIsAdmin(userUtil.getUserByToken(token))) return admC.forbind("Usuário não autrizado a deletar avisos");
+        New anew = repository.getReferenceById(id);
+        anew.deleteNew();
+        return ResponseEntity.ok(new InformationMessage("Noticia excluida com sucesso"));
     }
 
 }
