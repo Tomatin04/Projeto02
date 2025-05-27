@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CommentUtil {
@@ -25,8 +26,17 @@ public class CommentUtil {
         return comment;
     }
 
-    public ArrayList<Comment> getAllCommentsFromNew(Long id){
+    public List<Comment> getAllCommentsFromNew(Long id){
         var comments = commentRepository.findAllByANew(id);
-        
+
+        List<Comment> commentsList = comments.stream().map(comment -> {
+            Comment c = new Comment();
+            c.setId(comment.getId());
+            c.setANew(comment.getANew());
+            c.setOrigin(comment.getOrigin());
+            return c;
+        }).toList();
+
+        return commentsList;
     }
 }

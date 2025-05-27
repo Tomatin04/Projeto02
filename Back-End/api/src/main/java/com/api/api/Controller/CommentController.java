@@ -5,6 +5,7 @@ import com.api.api.Infra.Service.InformationMessage;
 import com.api.api.Model.Commet.Comment;
 import com.api.api.Model.Commet.CommentRepository;
 import com.api.api.Model.Commet.CreateData;
+import com.api.api.Model.Commet.ShowById;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -33,7 +34,7 @@ public class CommentController {
 
     @GetMapping("/{id}")
     public ResponseEntity showAllByNew(@PathVariable Long id){
-
-        return null;
+        var comments = commentUtil.getAllCommentsFromNew(id);
+        return ResponseEntity.ok(new ShowById("Comentarios da noticia de id: " + id, comments));
     }
 }
