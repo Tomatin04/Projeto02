@@ -2,10 +2,7 @@ package com.api.api.Controller;
 
 import com.api.api.Infra.Service.CommentUtil;
 import com.api.api.Infra.Service.InformationMessage;
-import com.api.api.Model.Commet.Comment;
-import com.api.api.Model.Commet.CommentRepository;
-import com.api.api.Model.Commet.CreateData;
-import com.api.api.Model.Commet.ShowById;
+import com.api.api.Model.Commet.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -34,7 +31,16 @@ public class CommentController {
 
     @GetMapping("/{id}")
     public ResponseEntity showAllByNew(@PathVariable Long id){
-        var comments = commentUtil.getAllCommentsFromNew(id);
+        var comments = commentUtil.construirArvoreComentarios(id);
         return ResponseEntity.ok(new ShowById("Comentarios da noticia de id: " + id, comments));
     }
+
+    @DeleteMapping
+    @Transactional
+    public ResponseEntity delete(@RequestHeader("Authorization")  String token, @RequestBody @Valid DeleteData data){
+        repository.deleteById(data.id());
+        return ResponseEntity.ok(new InformationMessage("Comentario excluido com sucesso"));
+    }
+
+
 }

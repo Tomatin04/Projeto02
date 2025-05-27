@@ -3,12 +3,16 @@ package com.api.api.Infra.Service;
 import com.api.api.Model.Commet.Comment;
 import com.api.api.Model.Commet.CommentRepository;
 import com.api.api.Model.Commet.CreateData;
+import com.api.api.Model.Commet.Teste;
 import com.api.api.Model.News.NewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentUtil {
@@ -26,17 +30,34 @@ public class CommentUtil {
         return comment;
     }
 
-    public List<Comment> getAllCommentsFromNew(Long id){
-        var comments = commentRepository.findAllByANew(id);
 
-        List<Comment> commentsList = comments.stream().map(comment -> {
-            Comment c = new Comment();
-            c.setId(comment.getId());
-            c.setANew(comment.getANew());
-            c.setOrigin(comment.getOrigin());
-            return c;
-        }).toList();
+    public List<Teste> construirArvoreComentarios(Long id) {
+        var comentarios = commentRepository.findAllByANew(id);
+        // Agrupar por ID do comentário pai
 
-        return commentsList;
+        Map<Long, List<Comment>> respostasPorPai = comentarios.stream()
+                .filter(c -> c.getOrigin() != null)
+                .collect(Collectors.groupingBy(c -> c.getOrigin().getId()));
+
+        // Filtrar comentários "raiz" (sem pai) e montar a árvore recursivamente
+        return comentarios.stream()
+                .filter(c -> c.getOrigin() == null)
+                .map(c -> montarComentarioRecursivamente(c, respostasPorPai))
+                .collect(Collectors.toList());
+    }
+
+    private Teste montarComentarioRecursivamente(Comment comentario, Map<Long, List<Comment>> respostasPorPai) {
+        List<Teste> filhos = Optional.ofNullable(respostasPorPai.get(comentario.getId()))
+                .orElse(List.of())
+                .stream()
+                .map(filho -> montarComentarioRecursivamente(filho, respostasPorPai))
+                .collect(Collectors.toList());
+
+        return new Teste(
+                comentario.getId(),
+                comentario.getANew().getId(),
+                comentario.getComment(),
+                filhos.isEmpty() ? null : filhos
+        );
     }
 }
