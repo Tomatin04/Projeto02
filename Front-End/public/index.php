@@ -29,7 +29,7 @@ if (array_key_exists($key, $routes)) {
 
     $controller = $diContainer->get($controllerClass);
 } else {
-    //$controller = new Error404Controller();
+    $controller;
 }
 
 $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();

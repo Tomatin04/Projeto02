@@ -86,7 +86,7 @@ class RequestBackEnd
         return json_decode($response, true);
     }
 
-    public function requestDelete(String $endpoint)
+    public function requestDelete(String $endpoint, String $data = null)
     {
         $ch = curl_init($this->apiEndpoints[$endpoint]);
 
@@ -99,6 +99,7 @@ class RequestBackEnd
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        if($data != null)curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
 

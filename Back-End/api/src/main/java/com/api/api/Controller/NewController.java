@@ -1,7 +1,7 @@
 package com.api.api.Controller;
 
-import com.api.api.Infra.Securety.TokenService;
-import com.api.api.Infra.Service.AdminCheck;
+import com.api.api.Infra.Service.NewUtil;
+import com.api.api.Infra.Service.Validation.AdminCheck;
 import com.api.api.Infra.Service.InformationMessage;
 import com.api.api.Infra.Service.UserUtil;
 import com.api.api.Model.News.CreateData;
@@ -9,7 +9,6 @@ import com.api.api.Model.News.New;
 import com.api.api.Model.News.NewRepository;
 import com.api.api.Model.News.ShowData;
 import com.api.api.Model.News.UpdateData;
-import com.api.api.Model.User.UserRepository;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -29,13 +28,13 @@ public class NewController {
     private NewRepository repository;
 
     @Autowired
-    private UserUtil userUtil;
+    private NewUtil newUtil;
 
     @Autowired
     private AdminCheck admC;
 
     @GetMapping
-    public ResponseEntity show (@PageableDefault(sort= {"titulo"}, size = 5) Pageable paginacao){
+    public ResponseEntity show (@PageableDefault(sort= {"titulo"}, size = 15) Pageable paginacao){
         var page = repository.findAllByIsNotDeleted(paginacao).map(ShowData::new);
         return ResponseEntity.ok(page);
     }
@@ -55,20 +54,15 @@ public class NewController {
     @PostMapping
     @Transactional
     public ResponseEntity create (@RequestHeader("Authorization")  String token, @RequestBody @Valid CreateData data, UriComponentsBuilder uriComponentsBuilder){
-        var user = userUtil.getUserByToken(token);
-        if(admC.checkIsAdmin(user)) return admC.forbind("Usuário não autrizado a criar avisos");
-        var anew = new New(data);
-        anew.setCreator(user);
-        repository.save(anew);
-        var uri = uriComponentsBuilder.path("api/new/{id}").buildAndExpand(anew.getId()).toUri();
-        return ResponseEntity.created(uri).body(new InformationMessage("Sucesso ao criar o noticia"));
+        return newUtil.saveUtil(token, data, uriComponentsBuilder);
     }
 
+    /*
     @PutMapping
     @Transactional
     public ResponseEntity update (@RequestHeader("Authorization")  String token, @RequestBody @Valid UpdateData data, UriComponentsBuilder uriComponentsBuilder){
         var user = userUtil.getUserByToken(token);
-        if(admC.checkIsAdmin(user)) return admC.forbind("Usuário não autrizado a atualizar avisos");
+        if(!admC.checkIsAdmin(user)) return admC.forbind("Usuário não autrizado a atualizar avisos");
         New anew = repository.getReferenceById(data.id());
         anew.atualizarInformacoes(data, user);
         return ResponseEntity.ok(new InformationMessage("Noticia atualziada com sucesso"));
@@ -77,10 +71,10 @@ public class NewController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity delete (@PathVariable Long id, @RequestHeader("Authorization")  String token){
-        if(admC.checkIsAdmin(userUtil.getUserByToken(token))) return admC.forbind("Usuário não autrizado a deletar avisos");
+        if(!admC.checkIsAdmin(userUtil.getUserByToken(token))) return admC.forbind("Usuário não autrizado a deletar avisos");
         New anew = repository.getReferenceById(id);
         anew.deleteNew();
         return ResponseEntity.ok(new InformationMessage("Noticia excluida com sucesso"));
     }
-
+    */
 }

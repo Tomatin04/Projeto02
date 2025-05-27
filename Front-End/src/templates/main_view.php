@@ -3,34 +3,17 @@
 <main class="content">
         <div class="painel-principal">
             <section class="painel-info">
-                <h2>Última Nóticias</h2>
-                <p>Este painel contém informações cruciais  sobre o siste Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate adipisci suscipit soluta debitis error omnis. Officiis natus possimus, ad nostrum soluta magni, voluptates dicta nulla libero obcaecati hic. Error, corrupti.</p>
+                <h2><?=$news[0]["titulo"]?></h2>
+                <p><?=$news[0]["conteudo"]?></p>
             </section>
     
             <section class="painel-lista">
                 <h2>Nóticias passadas</h2>
-                <ul>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <li>Item 1</li>
-                    <!-- ... -->
-                    <li>Item 15</li>
-                </ul>
+                <?php foreach($news as $new): ?>
+                    <ul>
+                    <li><?php echo $new["titulo"] ?></li>
+                    </ul>
+                <?php endforeach; ?>
             </section>
         </div>
     

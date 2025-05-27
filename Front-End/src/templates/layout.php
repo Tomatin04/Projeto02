@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/tela-central.css">
     <link rel="stylesheet" href="css/aviso.css">
     <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/perfil.css">
 </head>
 <body>
 
@@ -21,9 +22,9 @@
         <?php if(isset($_SESSION['token'])): ?>
             <nav id="menu" class="hidden">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Perfil</a></li>
-                    <li><a href="#">Créditos</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/perfil">Perfil</a></li>
+                    <li><a href="/creditos">Créditos</a></li>
                 </ul>
             </nav>
         <?php endif; ?>

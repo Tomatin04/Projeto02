@@ -9,5 +9,5 @@ return [
     'GET|/register' => Porjeto02\Frontend\controllers\RegisterFormController::class,
     'POST|/register' => Porjeto02\Frontend\controllers\RegisterController::class,
     'GET|/logout' => Porjeto02\Frontend\controllers\LogoutController::class,
-    
+    'GET|/perfil' => Porjeto02\Frontend\controllers\PerfilFormController::class,
 ];
