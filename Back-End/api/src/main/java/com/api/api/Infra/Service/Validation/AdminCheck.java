@@ -14,7 +14,9 @@ public class AdminCheck {
 
 
     public static boolean checkIsAdmin(User user){
-        if(user.getEmail().equals(mailAdmin)) return true;
+        if(user.getEmail().equals(mailAdmin)) {
+            return true;
+        };
         return false;
     }
 }

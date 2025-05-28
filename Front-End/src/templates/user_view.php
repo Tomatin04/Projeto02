@@ -1,13 +1,15 @@
-<?php $this->layout( 'layout'); ?>
+<?php $this->layout( 'layout'); 
+?>
+
 <div class="user-account-panel">
     <h1>Conta do Usuário</h1>
 
     <div class="user-info">
         <label><strong>Nome:</strong>
-            <input type="text" id="username" value="<?= $user['nome']?>" disabled>
+            <input type="text" id="username" value="<?php echo $user['nome']?>" disabled>
         </label>
 
-        <p><strong>Email:</strong><?= $user['email']?></p>
+        <p><strong>Email:</strong><?php echo $user['email']?></p>
     </div>
 
     <div class="password-section">
