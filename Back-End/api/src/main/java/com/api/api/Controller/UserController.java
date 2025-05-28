@@ -37,6 +37,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity show (@RequestHeader("Authorization")  String token){
         var user = userUtil.getUserByToken(token);
+        System.out.println();
         return ResponseEntity.ok(new InformationData(user, "Sucesso ao buscar usuario"));
     }
 

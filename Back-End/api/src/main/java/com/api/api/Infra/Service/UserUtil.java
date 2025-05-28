@@ -18,6 +18,7 @@ public class UserUtil {
     public User getUserByToken(String token){
         String clearToken = token.replace("Bearer ", "");
         var user = userRepository.findById(tokenService.getIdFromToken(clearToken)).orElseThrow();
+
         return user;
 
     }
@@ -26,5 +27,9 @@ public class UserUtil {
         String clearToken = token.replace("Bearer ", "");
         Long id = tokenService.getIdFromToken(clearToken);
         return id;
+    }
+
+    public Boolean verifyUserDeleted(String email){
+        return userRepository.userActive(email);
     }
 }

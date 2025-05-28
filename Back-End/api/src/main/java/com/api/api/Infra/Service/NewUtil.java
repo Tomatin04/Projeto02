@@ -1,10 +1,12 @@
 package com.api.api.Infra.Service;
 
 import com.api.api.Infra.Service.Validation.AdminCheck;
+import com.api.api.Infra.Service.Validation.ValidationBasic;
 import com.api.api.Model.News.CreateData;
 import com.api.api.Model.News.New;
 import com.api.api.Model.News.NewRepository;
 import com.api.api.Model.News.UpdateData;
+import com.api.api.Model.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +22,11 @@ public class NewUtil {
     @Autowired
     private NewRepository newRepository;
 
+    @Autowired
+    private ValidationBasic validationBasic;
+
     public ResponseEntity saveUtil(String token, CreateData data, UriComponentsBuilder uriComponentsBuilder){
-        var user = userUtil.getUserByToken(token);
-        if(AdminCheck.checkIsAdmin(user)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new InformationMessage("Usuário não autorizado a salvar noticias"));
-        };
+        var user = validationBasic.basicValidation(token, null, New.class);
         var anew = new New(data);
         anew.setCreator(user);
         newRepository.save(anew);
@@ -33,15 +35,14 @@ public class NewUtil {
     }
 
     public ResponseEntity updateUtil(String token, UpdateData data){
-
+        var user = validationBasic.basicValidation(token, null, New.class);
+        New anew = newRepository.getReferenceById(data.id());
+        anew.atualizarInformacoes(data, user);
+        return ResponseEntity.ok(new InformationMessage("Noticia atualziada com sucesso"));
     }
 
-
-    private ResponseEntity  tokenValidation(String token){
-        var user = userUtil.getUserByToken(token);
-        if(AdminCheck.checkIsAdmin(user)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new InformationMessage("Usuário não autorizado a salvar noticias"));
-        };
-        return null;
+    public  ResponseEntity deleteUtil(String token, Long id){
+        var user = validationBasic.basicValidation(token, null, New.class);
+        return ResponseEntity.ok(new InformationMessage("Noticia excluida  com sucesso"));
     }
 }

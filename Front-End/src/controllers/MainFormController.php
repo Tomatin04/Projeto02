@@ -19,6 +19,7 @@ class MainFormController implements RequestHandlerInterface
     {
         $response = (new RequestBackEnd())->requestGet('noticias');
         $news = $response["content"];
+        
         return new Response(200, body: $this->templates->render('main_view', [
             'news' => $news
         ]));

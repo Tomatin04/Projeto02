@@ -18,7 +18,7 @@ session_regenerate_id();
 //is_null($_SESSION['token'])
 $isLoginRoute = $pathInfo === '/login';
 $isRegisterRoute = $pathInfo === '/register';
-if (!array_key_exists('token', $_SESSION) && !$isLoginRoute && !$isRegisterRoute) {
+if ( !array_key_exists('token', $_SESSION) && !$isLoginRoute && !$isRegisterRoute) {
     header('Location: /login');
     return;
 }
@@ -29,7 +29,7 @@ if (array_key_exists($key, $routes)) {
 
     $controller = $diContainer->get($controllerClass);
 } else {
-    $controller;
+    //$controller = new Error404Controller();
 }
 
 $psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();

@@ -1,6 +1,7 @@
 package com.api.api.Model.News;
 
 import com.api.api.Model.User.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class New {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_creator")
+    @JsonBackReference
     private User creator;
 
     public New (CreateData data){

@@ -27,11 +27,13 @@ public class User implements UserDetails {
     private String nome;
     private String email;
     private String senha;
+    private boolean ativo;
 
     public User(CreateData data){
         this.nome = data.nome();
         this.email = data.email();
         this.senha = new SecuretyConfiguration().passwordEncoder().encode(data.senha());
+        this.ativo = true;
     }
 
     public void atualizarInformacoes(UpdateData data){
