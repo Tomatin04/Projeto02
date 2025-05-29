@@ -6,6 +6,7 @@ namespace Porjeto02\Frontend\controllers;
 
 use League\Plates\Engine;
 use Nyholm\Psr7\Response;
+use Porjeto02\Frontend\entity\Anew;
 use Porjeto02\Frontend\service\RequestBackEnd;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -18,8 +19,8 @@ class MainFormController implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $responseNew = (new RequestBackEnd())->requestGet('noticias');
-        $news = $responseNew["content"];
-        
+
+        $news = array_map(fn($item) => Anew::fromArray($item), $responseNew['content']);
         
         return new Response(200, body: $this->templates->render('main_view', [
             'news' => $news

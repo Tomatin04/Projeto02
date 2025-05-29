@@ -3,8 +3,8 @@
 <main class="content">
         <div class="painel-principal">
             <section class="painel-info">
-                <h2><?=reset($news)['titulo']?></h2>
-                <p><?=reset($news)['conteudo']?></p>
+                <h2><?=reset($news)->titulo?></h2>
+                <p><?=reset($news)->conteudo?></p>
             </section>
     
             <section class="painel-lista">
@@ -12,9 +12,9 @@
                 <?php foreach($news as $new): ?>
                     <ul>
                         <li>
-                            <a href="/new-view?id=<?= $new['id']?>" class="remover-sub-a">
+                            <a href="/new-view?id=<?= $new->id?>" class="remover-sub-a">
                                 <div class='div-list-news'>
-                                    <?php echo $new["titulo"]?>
+                                    <?= $new->titulo?>
                                 </div>
                             </a>
                         </li>

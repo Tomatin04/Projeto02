@@ -172,3 +172,9 @@ footer {
   padding: 12px;                    /* Espaço interno opcional */
   border-radius: 8px;              /* Cantos arredondados para suavidade */
 }
+
+.p-resposta-comentario{
+  border: 1px solid #ffffff;        /* Borda cinza clara */
+  box-shadow: 0 2px 6px rgba(180, 178, 178, 0.212); /* Sombra suave */      /* Fundo branco */              /* Espaço interno opcional */
+  border-radius: 8px; 
+}
