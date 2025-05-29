@@ -3,15 +3,21 @@
 <main class="content">
         <div class="painel-principal">
             <section class="painel-info">
-                <h2><?=$news[0]["titulo"]?></h2>
-                <p><?=$news[0]["conteudo"]?></p>
+                <h2><?=reset($news)['titulo']?></h2>
+                <p><?=reset($news)['conteudo']?></p>
             </section>
     
             <section class="painel-lista">
                 <h2>Nóticias passadas</h2>
                 <?php foreach($news as $new): ?>
                     <ul>
-                    <li><?php echo $new["titulo"] ?></li>
+                        <li>
+                            <a href="/new-view?id=<?= $new['id']?>" class="remover-sub-a">
+                                <div class='div-list-news'>
+                                    <?php echo $new["titulo"]?>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 <?php endforeach; ?>
             </section>

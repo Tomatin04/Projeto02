@@ -38,7 +38,7 @@ public class NewController {
     @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable Long id){
         var anew = repository.findByIdNotDeleted(id);
-        return ResponseEntity.ok(anew);
+        return ResponseEntity.ok(new ShowData(anew));
     }
 
     /*
@@ -48,6 +48,7 @@ public class NewController {
         return ResponseEntity.ok(anew);
     }
     */
+
     @PostMapping
     @Transactional
     public ResponseEntity create (@RequestHeader("Authorization")  String token, @RequestBody @Valid CreateData data, UriComponentsBuilder uriComponentsBuilder){

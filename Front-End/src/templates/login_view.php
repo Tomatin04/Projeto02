@@ -8,7 +8,7 @@
             <input  id="email" name="email" required>
             
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+            <input type="password" id="senha" name="senha" >
 
             <button type="submit">Entrar</button>
         </form>

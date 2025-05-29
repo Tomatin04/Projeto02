@@ -16,9 +16,16 @@ class RequestBackEnd
         $this->apiEndpoints = require __DIR__ . '/../../config/endpoints.php';
     }
 
-    public function requestGet(String $endpoint)
+    public function requestGet(String $endpoint, int $id = null)
     {
-        $ch = curl_init($this->apiEndpoints[$endpoint]);
+        
+
+        if($id != null){
+            $ch = curl_init($this->apiEndpoints[$endpoint] . '/' . $id);
+        }else{
+            $ch = curl_init($this->apiEndpoints[$endpoint]);
+        }
+        
         
         $header = [
             'Accept: application/json',
@@ -29,6 +36,8 @@ class RequestBackEnd
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        
+        
 
         $response = curl_exec($ch);
         

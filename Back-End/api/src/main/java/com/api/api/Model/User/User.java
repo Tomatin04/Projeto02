@@ -38,8 +38,7 @@ public class User implements UserDetails {
 
     public void atualizarInformacoes(UpdateData data){
         if(data.nome() != null){ this.nome = data.nome();}
-        if(data.senha() != null){ this.senha =new SecuretyConfiguration().passwordEncoder().encode(data.senha());}
-    }
+        if(data.senha() != null && !data.senha().isEmpty()){this.senha =new SecuretyConfiguration().passwordEncoder().encode(data.senha());}}
 
 
     @Override

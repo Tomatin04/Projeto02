@@ -24,7 +24,9 @@ class LogoutController implements RequestHandlerInterface
             session_destroy();
             $_SESSION['token'] = null;
             //var_dump($_SESSION['token']);
-            return new Response(200, body: $this->templates->render('login_view'));
+            return new Response(200,  [
+                'Location' => '/'
+            ]);
         }else{
 
             return new Response(200, body: $this->templates->render('main_view'));

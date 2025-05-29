@@ -45,6 +45,7 @@ public class UserController {
     @Transactional
     public ResponseEntity update (@RequestHeader("Authorization") String token, @RequestBody @Valid UpdateData data, UriComponentsBuilder uriComponentsBuilder){
         var user = userUtil.getUserByToken(token);
+        System.out.println(data.senha().getClass());
         user.atualizarInformacoes(data);
         return ResponseEntity.ok(new InformationData(user, "Sucesso ao salvar o usuario"));
     }

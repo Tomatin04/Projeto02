@@ -21,6 +21,7 @@ class LoginFormController implements RequestHandlerInterface
                 'Location' => '/'
             ]);
         }
+        
         return new Response(200, body: $this->templates->render('login_view'));
     }
 }

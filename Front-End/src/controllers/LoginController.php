@@ -27,7 +27,6 @@ class LoginController implements RequestHandlerInterface
         $json = json_encode($data);
 
         $response = (new RequestBackEnd())->requestPost('login', $json);
-        //var_dump($response);
 
         if($response != null){
             $_SESSION['token'] = $response;
@@ -35,7 +34,7 @@ class LoginController implements RequestHandlerInterface
             //var_dump($response, $_SESSION['token']);
             //exit();
             return new Response(200, [
-                'Location' => '/'
+                "Location" => "/"
             ]);
         }else{
             return new Response(200, body: $this->templates->render('login_view'));

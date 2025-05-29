@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface NewRepository extends JpaRepository<New, Long> {
     @Query(value = """
-            SELECT * FROM news WHERE is_deleted IS FALSE
+            SELECT * FROM news WHERE is_deleted IS FALSE ORDER BY id DESC
             """, nativeQuery = true)
     Page<New> findAllByIsNotDeleted(Pageable pageable);
 

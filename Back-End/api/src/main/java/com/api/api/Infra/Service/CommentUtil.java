@@ -1,5 +1,6 @@
 package com.api.api.Infra.Service;
 
+import com.api.api.Infra.Service.Validation.ValidationBasic;
 import com.api.api.Model.Commet.Comment;
 import com.api.api.Model.Commet.CommentRepository;
 import com.api.api.Model.Commet.CreateData;
@@ -22,6 +23,7 @@ public class CommentUtil {
 
     @Autowired
     private CommentRepository commentRepository;
+
 
     public Comment transformDataToComment(CreateData data){
         var comment = new Comment(data);
