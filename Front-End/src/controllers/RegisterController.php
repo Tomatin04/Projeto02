@@ -17,7 +17,7 @@ class RegisterController implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $password = filter_input(INPUT_POST, 'senha');
         $confirmPassword = filter_input(INPUT_POST, 'confirmar_senha');
         $name = filter_input(INPUT_POST, 'nome');
