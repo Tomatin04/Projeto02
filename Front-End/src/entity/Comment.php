@@ -17,6 +17,7 @@ class Comment
         public readonly int $id,
         public readonly int $anew,
         public readonly string $comment,
+        public readonly string $username
     ){}
 
     public static function fromArray(array $data): self
@@ -31,6 +32,7 @@ class Comment
             id: (int) $data['id'],
             anew: (int) $data['anew'],
             comment: $data['comment'],
+            username: $data['username']
         );
         $comment->respostas = $respostas;
 

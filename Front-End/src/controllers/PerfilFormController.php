@@ -19,7 +19,7 @@ class PerfilFormController implements RequestHandlerInterface{
     {
         $response = (new RequestBackEnd())->requestGet('usuarios');
         $user = $response["usuario"];
-        return new Response(200, body: $this->templates->render('user_view', [
+        return new Response(status: $_SESSION['HttpStatus'], body: $this->templates->render('user_view', [
             'user' => $user
         ]));
     }

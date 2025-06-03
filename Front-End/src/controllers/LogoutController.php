@@ -20,16 +20,15 @@ class LogoutController implements RequestHandlerInterface
     
         $reposne = (new RequestBackEnd())->requestPost('logout');
         
-        if($reposne != null){
+        if($_SESSION['HttpStatus'] == 200){
             session_destroy();
             $_SESSION['token'] = null;
-            //var_dump($_SESSION['token']);
-            return new Response(200,  [
+            return new Response($_SESSION['HttpStatus'],  [
                 'Location' => '/'
             ]);
         }else{
 
-            return new Response(200, body: $this->templates->render('main_view'));
+            return new Response($_SESSION['HttpStatus'], body: $this->templates->render('main_view'));
         }
     }
 }

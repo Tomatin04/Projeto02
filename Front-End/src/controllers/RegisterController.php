@@ -39,12 +39,12 @@ class RegisterController implements RequestHandlerInterface
 
         $response = (new RequestBackEnd())->requestPost('usuarios', $json);
 
-        if($response != null){
-            return new Response(200, [
+        if($_SESSION['HttpStatus'] == 201){
+            return new Response($_SESSION['HttpStatus'], [
                 'Location' => '/login'
             ]);
         }else{
-            return new Response(200, body: $this->templates->render('register_view'));
+            return new Response($_SESSION['HttpStatus'], body: $this->templates->render('register_view'));
         }
     }
 }

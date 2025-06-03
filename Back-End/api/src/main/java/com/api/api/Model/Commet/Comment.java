@@ -1,6 +1,7 @@
 package com.api.api.Model.Commet;
 
 import com.api.api.Model.News.New;
+import com.api.api.Model.User.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -33,12 +34,15 @@ public class Comment {
     @JsonBackReference
     private Comment origin;
 
+    private String username;
+
     @OneToMany(mappedBy = "origin", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Comment> respostas;
 
-    public Comment(CreateData data){
+    public Comment(CreateData data, String username){
         this.comment = data.comment();
+        this.username = username;
     }
 
     @Override

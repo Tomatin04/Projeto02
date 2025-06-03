@@ -11,5 +11,8 @@ return [
     'GET|/logout' => Porjeto02\Frontend\controllers\LogoutController::class,
     'GET|/perfil' => Porjeto02\Frontend\controllers\PerfilFormController::class,
     'POST|/perfil' => Porjeto02\Frontend\controllers\PerfilController::class,
-    'GET|/new-view' => Porjeto02\Frontend\controllers\NewViewForm::class
+    'GET|/new-view' => Porjeto02\Frontend\controllers\NewViewForm::class,
+    'GET|/creditos' => Porjeto02\Frontend\controllers\CreditosFormController::class,
+    'GET|/timeout' => Porjeto02\Frontend\controllers\TimeOutController::class,
+
 ];

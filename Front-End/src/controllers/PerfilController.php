@@ -21,16 +21,16 @@ class PerfilController implements RequestHandlerInterface
         $name = filter_input(INPUT_POST, 'nome');
         $password = filter_input(INPUT_POST, 'senha');
 
-        
         $data = [
             "nome" => $name,
             "senha" => $password 
         ];
+
         $json = json_encode($data);
 
-        $response = (new RequestBackEnd()) -> requestPut('usuarios', $json);
+        (new RequestBackEnd()) -> requestPut('usuarios', $json);
 
-        return new Response(200, ['Location' => '/perfil']);
+        return new Response($_SESSION['HttpStatus'], ['Location' => '/perfil']);
     }
     
 }

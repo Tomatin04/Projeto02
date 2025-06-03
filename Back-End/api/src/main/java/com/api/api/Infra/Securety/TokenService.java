@@ -26,8 +26,6 @@ public class TokenService {
     public String generateToken(User user){
         try {
             var alg = Algorithm.HMAC256(secret);
-            System.out.println("TESTE");
-            System.out.println(userRepository.userId(user.getEmail()));
             return JWT.create()
                     .withIssuer("Email")
                     .withSubject(user.getEmail())

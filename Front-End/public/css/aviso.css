@@ -34,16 +34,34 @@ header {
 
 /* Janela de aviso */
 .janela-aviso {
+    position: relative;
     background-color: #333;
     color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    width: 80%;
+    width: 100%;
     max-width: 800px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.botao-inferior-direito {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao-inferior-direito:hover {
+    background-color: #0056b3;
 }
 
 .aviso h2 {
@@ -63,9 +81,9 @@ header {
 
 .comentario {
     background-color: #444;
-    padding: 15px;
+    padding: 30px;
     border-radius: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .comentario.resposta {

@@ -10,7 +10,7 @@ public record CreateData(
         String nome,
         @NotBlank @Email
         String email,
-        @NotNull @Pattern(regexp = "\\d{8,80}")
+        @NotNull @Pattern(regexp = "\\d{7,80}")
         String senha
 ) {
 }

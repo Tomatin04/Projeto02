@@ -32,6 +32,18 @@ public class SecuretyFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, POST, PUT");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+        if("OPTIONS".equalsIgnoreCase(request.getMethod())){
+            response.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+
         if(tokenJWT != null){
             var subject = tokenService.getSubject(tokenJWT);
             var user = repository.findByEmail(subject);

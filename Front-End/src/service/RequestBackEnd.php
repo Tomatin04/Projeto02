@@ -18,29 +18,21 @@ class RequestBackEnd
 
     public function requestGet(String $endpoint, int $id = null)
     {
-        
-
         if($id != null){
             $ch = curl_init($this->apiEndpoints[$endpoint] . '/' . $id);
         }else{
             $ch = curl_init($this->apiEndpoints[$endpoint]);
         }
         
-        
-        $header = [
-            'Accept: application/json',
-        ];
-        
+        $header = ['Accept: application/json',];
 
         if (isset($_SESSION['token'])) $header[] = 'Authorization: Bearer ' . $_SESSION['token']['token'];
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-        
-        
 
         $response = curl_exec($ch);
-        
+        $_SESSION['HttpStatus'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
         curl_close($ch);
 
         return json_decode($response, true);
@@ -56,16 +48,14 @@ class RequestBackEnd
         ];
 
         if (isset($_SESSION['token'])) $header[] = 'Authorization: Bearer ' . $_SESSION['token']['token'];
-        
-
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         if($data != null)curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-        
 
         $response = curl_exec($ch);
+        $_SESSION['HttpStatus'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
         curl_close($ch);
 
         return json_decode($response, true);
@@ -82,14 +72,13 @@ class RequestBackEnd
 
         if (isset($_SESSION['token'])) $header[] = 'Authorization: Bearer ' . $_SESSION['token']['token'];
 
-
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
-
         $response = curl_exec($ch);
+        $_SESSION['HttpStatus'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
         curl_close($ch);
 
         return json_decode($response, true);
@@ -111,8 +100,8 @@ class RequestBackEnd
         if($data != null)curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
-
         $response = curl_exec($ch);
+        $_SESSION['HttpStatus'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
         curl_close($ch);
 
         return json_decode($response, true);

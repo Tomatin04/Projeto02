@@ -2,6 +2,7 @@ package com.api.api.Controller;
 
 import com.api.api.Infra.Service.CommentUtil;
 import com.api.api.Infra.Service.InformationMessage;
+import com.api.api.Infra.Service.UserUtil;
 import com.api.api.Model.Commet.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
@@ -19,12 +20,15 @@ public class CommentController {
     private CommentUtil commentUtil;
 
     @Autowired
+    private UserUtil userUtil;
+
+    @Autowired
     private CommentRepository repository;
 
     @PostMapping
     @Transactional
     public ResponseEntity create(@RequestHeader("Authorization")  String token, @RequestBody @Valid CreateData data){
-        var comment = commentUtil.transformDataToComment(data);
+        var comment = commentUtil.transformDataToComment(data, userUtil.getUserByToken(token).getNome());
         repository.save(comment);
         return ResponseEntity.ok(new InformationMessage("Comentario salvo com sucesso"));
     }

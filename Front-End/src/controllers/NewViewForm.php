@@ -28,9 +28,8 @@ class NewViewForm implements RequestHandlerInterface
 
         $comments = array_map(fn($item) => Comment::fromArray($item), $response['comentarios']);
         
-        //$news = array_map(fn($item) => Anew::fromArray($item), $responseNew['content']);
 
-        return new Response(200, body: $this->templates->render('news_view',
+        return new Response($_SESSION['HttpStatus'], body: $this->templates->render('news_view',
         ['new' => $new,
               'comments' => $comments]
     ));

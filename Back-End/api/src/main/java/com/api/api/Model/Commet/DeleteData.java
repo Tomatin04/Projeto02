@@ -1,4 +1,6 @@
 package com.api.api.Model.Commet;
 
-public record DeleteData(Long id) {
+import jakarta.validation.constraints.NotNull;
+
+public record DeleteData(@NotNull Long id) {
 }

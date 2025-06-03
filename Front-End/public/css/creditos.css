@@ -1,0 +1,27 @@
+.pagina {
+    height: 100vh;
+    width: 100%;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.creditos-conteudo {
+    max-width: 600px;
+}
+
+
+.creditos-h1 {
+    margin-bottom: 10px;
+}
+
+.creditos-p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
