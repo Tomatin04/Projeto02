@@ -102,6 +102,7 @@ nav ul li a:hover {
     height: 200px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    overflow-y: scroll;
 }
 
 .painel-info h2 {
@@ -182,6 +183,7 @@ footer {
 .painel-principal {
     display: flex;
     flex-direction: column;
+    height: 100%; 
     flex: 1;
     gap: 20px;
     

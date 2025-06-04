@@ -31,7 +31,7 @@ class NovaNewController implements RequestHandlerInterface
             (new RequestBackEnd())->requestPut('noticias', json_encode($data));
 
             if($_SESSION['HttpStatus'] == 200){
-                return new Response($_SESSION['HttpStatus'], ['Location' => '/']);
+                return new Response($_SESSION['HttpStatus'], ["Location" => "/"]);
             }
             return new Response(401, ['Location' => 'nova-new']);
         }
@@ -39,7 +39,7 @@ class NovaNewController implements RequestHandlerInterface
         (new RequestBackEnd())->requestPost('noticias', json_encode($data));
 
         if($_SESSION['HttpStatus'] == 201){
-            return new Response($_SESSION['HttpStatus'], ['Location' => '/']);
+            return new Response(200, ["Location" => "/"]);
         }
         return new Response(401, ['Location' => 'nova-new']);
     }
