@@ -1,4 +1,10 @@
 package com.api.api.Model.News;
 
-public record UpdateData(Long id, String titulo, String conteudo) {
+import jakarta.validation.constraints.NotNull;
+
+public record UpdateData(
+        @NotNull
+        Long id,
+        String titulo,
+        String conteudo) {
 }

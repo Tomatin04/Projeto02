@@ -43,7 +43,7 @@ public class UserController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity update (@RequestHeader("Authorization") String token, @RequestBody @Valid UpdateData data, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity update (@RequestHeader("Authorization") String token, @RequestBody  UpdateData data, UriComponentsBuilder uriComponentsBuilder){
         var user = userUtil.getUserByToken(token);
         System.out.println(data.senha().getClass());
         user.atualizarInformacoes(data);

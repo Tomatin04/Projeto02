@@ -28,9 +28,10 @@ class LoginController implements RequestHandlerInterface
 
         $response = (new RequestBackEnd())->requestPost('login', $json);
 
-        if($_SESSION['HttpStatus'] == 200 && isset($response['token'])){
+        if($_SESSION['HttpStatus'] == 200 ){
 
             $_SESSION['token'] = $response;
+            if($email == "adm@mail.com") $_SESSION['ADM'] = true;
 
             return new Response(200, [
                 "Location" => "/"

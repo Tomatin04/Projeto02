@@ -20,7 +20,6 @@ public  class ValidationBasic {
 
     public  User basicValidation(String token, Long id, Object item){
         var user = userUtil.getUserByToken(token);
-        System.out.println(user.getEmail());
         var data = new InfoValidation(user, id, item);
         validadores.forEach(v ->v.valid(data));
         return user;

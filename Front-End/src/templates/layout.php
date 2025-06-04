@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/creditos.css">
+    <link rel="stylesheet" href="css/comentario.css">
+    
 </head>
 
 <body>
@@ -27,6 +29,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/perfil">Perfil</a></li>
+                <?php if($_SESSION['ADM']): ?><li><a href="/nova-new">Noticia</a></li> <?php endif;?>
                 <li><a href="/creditos">Créditos</a></li>
             </ul>
         </nav>

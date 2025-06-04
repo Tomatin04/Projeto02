@@ -39,7 +39,7 @@ class RegisterController implements RequestHandlerInterface
 
         $response = (new RequestBackEnd())->requestPost('usuarios', $json);
 
-        if($_SESSION['HttpStatus'] == 201){
+        if($_SESSION['HttpStatus'] == 200){
             return new Response($_SESSION['HttpStatus'], [
                 'Location' => '/login'
             ]);

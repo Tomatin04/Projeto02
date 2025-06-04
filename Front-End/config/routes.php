@@ -1,6 +1,5 @@
 <?php
 
-declare(strict_types=1);
 
 return [
     'GET|/' => Porjeto02\Frontend\controllers\MainFormController::class,
@@ -14,5 +13,10 @@ return [
     'GET|/new-view' => Porjeto02\Frontend\controllers\NewViewForm::class,
     'GET|/creditos' => Porjeto02\Frontend\controllers\CreditosFormController::class,
     'GET|/timeout' => Porjeto02\Frontend\controllers\TimeOutController::class,
+    "POST|/comentar" => Porjeto02\Frontend\controllers\CommentController::class,
+    'POST|/deleteNew' => Porjeto02\Frontend\controllers\NewDeleteController::class,
+    'GET|/nova-new' => Porjeto02\Frontend\controllers\NewFormController::class,
+    'POST|/nova-new' => Porjeto02\Frontend\controllers\NovaNewController::class,
+
 
 ];

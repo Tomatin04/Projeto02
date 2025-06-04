@@ -36,7 +36,7 @@ public class NewController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity findById(@PathVariable Long id){
+    public ResponseEntity findById(@PathVariable @Valid Long id){
         var anew = repository.findByIdNotDeleted(id);
         return ResponseEntity.ok(new ShowData(anew));
     }

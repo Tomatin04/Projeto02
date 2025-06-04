@@ -1,11 +1,12 @@
 package com.api.api.Model.News;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record CreateData(
-        @NotBlank
+        @NotNull
         String titulo,
-        @NotBlank
+        @NotNull
         String conteudo) {
 
     public CreateData(New anew){

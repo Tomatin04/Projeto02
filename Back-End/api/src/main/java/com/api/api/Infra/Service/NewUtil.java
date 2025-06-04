@@ -43,6 +43,7 @@ public class NewUtil {
 
     public  ResponseEntity deleteUtil(String token, Long id){
         var user = validationBasic.basicValidation(token, null, New.class);
+        newRepository.intelegentDeleteById(id);
         return ResponseEntity.ok(new InformationMessage("Noticia excluida  com sucesso"));
     }
 }

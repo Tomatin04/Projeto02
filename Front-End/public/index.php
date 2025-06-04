@@ -14,7 +14,6 @@ $httpMethod = $_SERVER['REQUEST_METHOD'];
 session_start();
 session_regenerate_id();
 
-
 //is_null($_SESSION['token'])
 $isLoginRoute = $pathInfo === '/login';
 $isRegisterRoute = $pathInfo === '/register';
