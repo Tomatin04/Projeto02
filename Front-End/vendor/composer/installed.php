@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'matheus/frontend',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'cb2eeab21bdb4d0e6526f63d51ebd3c40fc32aad',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'matheus/frontend' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'cb2eeab21bdb4d0e6526f63d51ebd3c40fc32aad',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
